@@ -19,13 +19,9 @@
   --green:#1a3a2a;--green-mid:#2d5a3d;--green-light:#e8f0eb;
   --gold:#c9a84c;--gold-light:#f9f1dc;--cream:#faf8f4;
   --text:#1a1a1a;--text-muted:#6b7280;--border:#e2ddd5;
-  --white:#ffffff;--star-on:#c9a84c;--star-off:#e2ddd5;--danger:#dc2626;
+  --white:#ffffff;--danger:#dc2626;
 }
-body{
-  font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);
-  max-width:430px;margin:0 auto;min-height:100vh;
-  padding-top:env(safe-area-inset-top);
-}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);max-width:430px;margin:0 auto;min-height:100vh;padding-top:env(safe-area-inset-top);}
 .header{background:var(--green);padding:1.25rem 1.25rem 0;position:sticky;top:0;z-index:100;}
 .header-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;}
 .logo{font-family:'Playfair Display',serif;font-size:22px;color:var(--cream);font-weight:600;letter-spacing:0.02em;}
@@ -43,15 +39,13 @@ body{
 .section-head{font-size:12px;font-weight:500;color:var(--text-muted);letter-spacing:0.06em;text-transform:uppercase;margin:0.75rem 0 0.5rem;}
 .course-card{background:var(--white);border:0.5px solid var(--border);border-radius:12px;padding:1rem;margin-bottom:0.65rem;cursor:pointer;transition:border-color 0.15s;}
 .course-card:active{border-color:#b5b0a8;background:#f5f3ef;}
-.course-top{display:flex;justify-content:space-between;align-items:flex-start;}
+.course-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;}
 .course-name{font-weight:500;font-size:15px;line-height:1.3;}
 .course-location{font-size:12px;color:var(--text-muted);margin-top:2px;}
-.stars{display:flex;gap:2px;margin-top:6px;}
-.star{color:var(--star-off);font-size:14px;}
-.star.on{color:var(--star-on);}
 .course-meta{font-size:12px;color:var(--text-muted);margin-top:6px;}
 .course-notes{font-size:13px;color:var(--text-muted);margin-top:5px;font-style:italic;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
 .rank-badge{background:var(--green);color:var(--gold);font-size:11px;font-weight:600;padding:2px 7px;border-radius:20px;flex-shrink:0;font-family:'Playfair Display',serif;}
+.score-badge{font-size:13px;font-weight:600;padding:3px 8px;border-radius:20px;flex-shrink:0;font-family:'Playfair Display',serif;background:var(--gold-light);}
 .bucket-tag{background:var(--gold-light);color:#92711a;font-size:11px;font-weight:500;padding:2px 8px;border-radius:20px;flex-shrink:0;}
 .empty-state{text-align:center;padding:3rem 1rem;}
 .empty-icon{font-size:40px;color:var(--border);margin-bottom:0.75rem;}
@@ -61,7 +55,8 @@ body{
 .modal{background:var(--white);border-radius:20px 20px 0 0;width:100%;max-width:430px;max-height:92vh;overflow-y:auto;padding:1.5rem 1.25rem calc(2rem + env(safe-area-inset-bottom));animation:slideUp 0.25s ease;}
 @keyframes slideUp{from{transform:translateY(60px);opacity:0}to{transform:none;opacity:1}}
 .modal-handle{width:36px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 1.25rem;}
-.modal-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:600;margin-bottom:1.25rem;}
+.modal-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:600;margin-bottom:0.4rem;}
+.modal-sub{font-size:13px;color:var(--text-muted);margin-bottom:1.25rem;}
 .form-group{margin-bottom:1rem;position:relative;}
 .form-label{font-size:12px;font-weight:500;color:var(--text-muted);margin-bottom:4px;display:block;letter-spacing:0.04em;text-transform:uppercase;}
 .form-input{width:100%;border:0.5px solid var(--border);border-radius:8px;padding:0.6rem 0.75rem;font-size:16px;font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);outline:none;transition:border-color 0.15s;-webkit-appearance:none;}
@@ -76,23 +71,39 @@ textarea.form-input{resize:none;height:80px;line-height:1.5;}
 .suggestion-status{padding:0.65rem 0.75rem;font-size:13px;color:var(--text-muted);font-style:italic;}
 .spinner{display:inline-block;width:12px;height:12px;border:2px solid var(--border);border-top-color:var(--gold);border-radius:50%;animation:spin 0.7s linear infinite;margin-right:6px;vertical-align:-2px;}
 @keyframes spin{to{transform:rotate(360deg)}}
-.star-picker{display:flex;gap:6px;margin-top:4px;}
-.star-pick{font-size:30px;color:var(--star-off);cursor:pointer;transition:color 0.1s;background:none;border:none;padding:4px;-webkit-tap-highlight-color:transparent;}
-.star-pick.on{color:var(--star-on);}
+.feeling-btns{display:flex;flex-direction:column;gap:10px;margin-top:0.5rem;}
+.feeling-btn{width:100%;padding:1rem 1.25rem;border:0.5px solid var(--border);border-radius:12px;background:var(--white);font-family:'DM Sans',sans-serif;cursor:pointer;text-align:left;display:flex;align-items:center;gap:12px;transition:all 0.15s;}
+.feeling-btn:active{transform:scale(0.98);}
+.feeling-btn.liked{border-color:#2d5a3d;background:var(--green-light);}
+.feeling-btn.okay{border-color:#b8860b;background:#fefbf0;}
+.feeling-btn.disliked{border-color:#dc2626;background:#fff5f5;}
+.feeling-label{font-size:15px;font-weight:500;}
+.feeling-range{font-size:12px;color:var(--text-muted);margin-top:1px;}
+.h2h-prompt{font-size:15px;color:var(--text-muted);margin-bottom:1.25rem;line-height:1.5;}
+.h2h-btns{display:flex;flex-direction:column;gap:10px;}
+.h2h-btn{width:100%;padding:1rem 1.25rem;border:0.5px solid var(--border);border-radius:12px;background:var(--white);font-family:'DM Sans',sans-serif;cursor:pointer;text-align:left;transition:all 0.15s;}
+.h2h-btn:active{background:var(--green-light);border-color:var(--green-mid);}
+.h2h-course{font-size:15px;font-weight:500;}
+.h2h-loc{font-size:12px;color:var(--text-muted);margin-top:2px;}
+.h2h-score{font-size:12px;color:var(--gold);font-weight:600;margin-top:2px;}
+.h2h-divider{text-align:center;font-size:12px;color:var(--text-muted);font-weight:500;letter-spacing:0.05em;padding:0.25rem 0;}
+.progress-dots{display:flex;gap:6px;justify-content:center;margin-bottom:1.25rem;}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--border);}
+.dot.active{background:var(--green);}
+.dot.done{background:var(--gold);}
 .type-toggle{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:4px;}
 .type-btn{padding:0.6rem;border:0.5px solid var(--border);border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;background:var(--white);color:var(--text-muted);font-family:'DM Sans',sans-serif;transition:all 0.15s;}
 .type-btn.active{background:var(--green);color:var(--white);border-color:var(--green);}
-.save-btn{width:100%;background:var(--green);color:var(--white);border:none;border-radius:10px;padding:0.9rem;font-size:16px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;margin-top:0.5rem;transition:background 0.15s;}
+.save-btn{width:100%;background:var(--green);color:var(--white);border:none;border-radius:10px;padding:0.9rem;font-size:16px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;margin-top:0.5rem;}
 .save-btn:active{background:var(--green-mid);}
 .delete-btn{width:100%;background:none;color:var(--danger);border:0.5px solid var(--danger);border-radius:10px;padding:0.75rem;font-size:14px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;margin-top:0.5rem;}
 .search-wrap{position:relative;margin-bottom:0.75rem;}
 .search-input{width:100%;border:0.5px solid var(--border);border-radius:10px;padding:0.6rem 0.75rem 0.6rem 2.25rem;font-size:15px;font-family:'DM Sans',sans-serif;background:var(--white);color:var(--text);outline:none;-webkit-appearance:none;}
-.search-input:focus{border-color:var(--green-mid);}
 .search-icon{position:absolute;left:0.65rem;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:16px;pointer-events:none;}
+.step{display:none;}.step.active{display:block;}
 </style>
 </head>
 <body>
-
 <div class="header">
   <div class="header-top">
     <div class="logo">The<span> Bag</span></div>
@@ -103,269 +114,242 @@ textarea.form-input{resize:none;height:80px;line-height:1.5;}
     <button class="tab" onclick="switchTab('bucket',this)">Bucket List</button>
   </div>
 </div>
-
 <div class="content" id="main-content"></div>
-
 <div class="modal-overlay" id="modal">
   <div class="modal">
     <div class="modal-handle"></div>
-    <div class="modal-title" id="modal-title">Add a course</div>
-    <div class="form-group">
-      <label class="form-label">Course name</label>
-      <input class="form-input" id="f-name" placeholder="Start typing a course name…" autocomplete="off" />
-      <div class="suggestions" id="suggestions" style="display:none"></div>
+    <div class="step active" id="step-1">
+      <div class="modal-title" id="modal-title">Add a course</div>
+      <div class="form-group">
+        <label class="form-label">Course name</label>
+        <input class="form-input" id="f-name" placeholder="Start typing a course name…" autocomplete="off" />
+        <div class="suggestions" id="suggestions" style="display:none"></div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Location</label>
+        <input class="form-input" id="f-location" placeholder="City, State" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Type</label>
+        <div class="type-toggle">
+          <button class="type-btn active" id="btn-played" onclick="setType('played')">Played</button>
+          <button class="type-btn" id="btn-bucket" onclick="setType('bucket')">Bucket list</button>
+        </div>
+      </div>
+      <div id="played-extra">
+        <div class="form-group">
+          <label class="form-label">Date played</label>
+          <input class="form-input" id="f-date" type="date" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Notes</label>
+          <textarea class="form-input" id="f-notes" placeholder="Conditions, highlights, would you go back?"></textarea>
+        </div>
+      </div>
+      <button class="save-btn" onclick="step1Next()">Next</button>
+      <button class="delete-btn" id="delete-btn" style="display:none" onclick="deleteCourse()"><i class="ti ti-trash"></i> Remove course</button>
     </div>
-    <div class="form-group">
-      <label class="form-label">Location</label>
-      <input class="form-input" id="f-location" placeholder="City, State" />
-    </div>
-    <div class="form-group">
-      <label class="form-label">Type</label>
-      <div class="type-toggle">
-        <button class="type-btn active" id="btn-played" onclick="setType('played')">Played</button>
-        <button class="type-btn" id="btn-bucket" onclick="setType('bucket')">Bucket list</button>
+    <div class="step" id="step-2">
+      <div class="modal-title">How was it?</div>
+      <div class="modal-sub" id="feeling-sub"></div>
+      <div class="feeling-btns">
+        <button class="feeling-btn liked" onclick="setFeeling('liked')">
+          <div><div class="feeling-label">I loved it</div><div class="feeling-range">Score range: 8–10</div></div>
+        </button>
+        <button class="feeling-btn okay" onclick="setFeeling('okay')">
+          <div><div class="feeling-label">I liked it</div><div class="feeling-range">Score range: 5–7</div></div>
+        </button>
+        <button class="feeling-btn disliked" onclick="setFeeling('disliked')">
+          <div><div class="feeling-label">It was okay / didn't like it</div><div class="feeling-range">Score range: 1–4</div></div>
+        </button>
       </div>
     </div>
-    <div id="played-fields">
+    <div class="step" id="step-3">
+      <div class="modal-title">Compare courses</div>
+      <div class="progress-dots" id="progress-dots"></div>
+      <div class="h2h-prompt" id="h2h-prompt"></div>
+      <div class="h2h-btns" id="h2h-btns"></div>
+    </div>
+    <div class="step" id="step-edit">
+      <div class="modal-title">Edit course</div>
       <div class="form-group">
-        <label class="form-label">Rating</label>
-        <div class="star-picker">
-          <button class="star-pick" onclick="setRating(1)"><i class="ti ti-star-filled"></i></button>
-          <button class="star-pick" onclick="setRating(2)"><i class="ti ti-star-filled"></i></button>
-          <button class="star-pick" onclick="setRating(3)"><i class="ti ti-star-filled"></i></button>
-          <button class="star-pick" onclick="setRating(4)"><i class="ti ti-star-filled"></i></button>
-          <button class="star-pick" onclick="setRating(5)"><i class="ti ti-star-filled"></i></button>
-        </div>
+        <label class="form-label">Course name</label>
+        <input class="form-input" id="e-name" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Location</label>
+        <input class="form-input" id="e-location" />
       </div>
       <div class="form-group">
         <label class="form-label">Date played</label>
-        <input class="form-input" id="f-date" type="date" />
+        <input class="form-input" id="e-date" type="date" />
       </div>
       <div class="form-group">
         <label class="form-label">Notes</label>
-        <textarea class="form-input" id="f-notes" placeholder="Conditions, highlights, would you go back?"></textarea>
+        <textarea class="form-input" id="e-notes"></textarea>
       </div>
+      <button class="save-btn" onclick="saveEdit()">Save changes</button>
+      <button class="delete-btn" onclick="deleteCourse()"><i class="ti ti-trash"></i> Remove course</button>
     </div>
-    <button class="save-btn" id="save-btn" onclick="saveCourse()">Save course</button>
-    <button class="delete-btn" id="delete-btn" style="display:none" onclick="deleteCourse()"><i class="ti ti-trash"></i> Remove course</button>
   </div>
 </div>
-
 <script>
-let courses = JSON.parse(localStorage.getItem('thebag_v3')||'[]');
-let currentTab = 'played';
-let editingId = null;
-let currentRating = 0;
-let currentType = 'played';
-let searchTimer = null;
-let suggestionResults = [];
+let courses=JSON.parse(localStorage.getItem('thebag_v4')||'[]');
+let currentTab='played',editingId=null,currentType='played',searchTimer=null,suggestionResults=[];
+let newCourse=null,feelingRange=[],h2hQueue=[],h2hIndex=0,h2hResults=[],maxComparisons=3;
 
-function save(){localStorage.setItem('thebag_v3',JSON.stringify(courses));}
-
-function switchTab(tab,el){
-  currentTab=tab;
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  el.classList.add('active');
-  render();
-}
-
-function starsHtml(n,total=5){
-  return Array.from({length:total},(_,i)=>
-    `<span class="star${i<n?' on':''}" aria-hidden="true"><i class="ti ti-star-filled"></i></span>`
-  ).join('');
-}
-
-function formatDate(d){
-  if(!d)return '';
-  return new Date(d+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
-}
+function save(){localStorage.setItem('thebag_v4',JSON.stringify(courses));}
+function switchTab(tab,el){currentTab=tab;document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');render();}
+function formatDate(d){if(!d)return '';return new Date(d+'T12:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});}
+function scoreColor(s){if(s>=8)return '#2d5a3d';if(s>=5)return '#b8860b';return '#dc2626';}
 
 function render(){
   const el=document.getElementById('main-content');
   const list=courses.filter(c=>c.type===currentTab);
   if(currentTab==='played'){
-    const sorted=[...list].sort((a,b)=>b.rating-a.rating);
-    const avg=list.length?(list.reduce((s,c)=>s+c.rating,0)/list.length).toFixed(1):0;
-    let html=`<div class="stats-row">
-      <div class="stat-card"><div class="stat-num">${list.length}</div><div class="stat-label">Courses</div></div>
-      <div class="stat-card"><div class="stat-num">${avg||'—'}</div><div class="stat-label">Avg rating</div></div>
-      <div class="stat-card"><div class="stat-num">${list.filter(c=>c.rating>=4).length}</div><div class="stat-label">4+ stars</div></div>
-    </div>`;
+    const sorted=[...list].sort((a,b)=>b.score-a.score);
+    const avg=list.length?(list.reduce((s,c)=>s+c.score,0)/list.length).toFixed(1):0;
+    let html=`<div class="stats-row"><div class="stat-card"><div class="stat-num">${list.length}</div><div class="stat-label">Courses</div></div><div class="stat-card"><div class="stat-num">${avg||'—'}</div><div class="stat-label">Avg score</div></div><div class="stat-card"><div class="stat-num">${list.filter(c=>c.score>=8).length}</div><div class="stat-label">8+ scores</div></div></div>`;
     if(sorted.length){
       html+=`<div class="search-wrap"><i class="ti ti-search search-icon" aria-hidden="true"></i><input class="search-input" placeholder="Search courses…" oninput="renderFiltered()" /></div>`;
-      html+=`<div class="section-head">Ranked by your rating</div><div id="course-list">`;
+      html+=`<div class="section-head">Ranked by score</div><div id="course-list">`;
       sorted.forEach((c,i)=>{
-        html+=`<div class="course-card" onclick="openEdit('${c.id}')">
-          <div class="course-top">
-            <div><div class="course-name">${c.name}</div><div class="course-location">${c.location||''}</div></div>
-            <div class="rank-badge">#${i+1}</div>
-          </div>
-          <div class="stars">${starsHtml(c.rating)}</div>
-          ${c.date?`<div class="course-meta"><i class="ti ti-calendar" style="font-size:12px;vertical-align:-1px" aria-hidden="true"></i> ${formatDate(c.date)}</div>`:''}
-          ${c.notes?`<div class="course-notes">${c.notes}</div>`:''}
-        </div>`;
+        html+=`<div class="course-card" onclick="openEdit('${c.id}')"><div class="course-top"><div><div class="course-name">${c.name}</div><div class="course-location">${c.location||''}</div></div><div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px"><div class="rank-badge">#${i+1}</div><div class="score-badge" style="color:${scoreColor(c.score)}">${c.score}/10</div></div></div>${c.date?`<div class="course-meta"><i class="ti ti-calendar" style="font-size:12px;vertical-align:-1px"></i> ${formatDate(c.date)}</div>`:''}${c.notes?`<div class="course-notes">${c.notes}</div>`:''}</div>`;
       });
       html+=`</div>`;
     } else {
-      html+=`<div class="empty-state"><div class="empty-icon"><i class="ti ti-golf" aria-hidden="true"></i></div><div class="empty-text">No courses logged yet.<br>Hit + to add your first round.</div></div>`;
+      html+=`<div class="empty-state"><div class="empty-icon"><i class="ti ti-golf"></i></div><div class="empty-text">No courses logged yet.<br>Hit + to add your first round.</div></div>`;
     }
     el.innerHTML=html;
   } else {
     let html='';
     if(list.length){
-      html+=`<div class="search-wrap"><i class="ti ti-search search-icon" aria-hidden="true"></i><input class="search-input" placeholder="Search bucket list…" oninput="renderFiltered()" /></div>`;
-      html+=`<div class="section-head">${list.length} course${list.length!==1?'s':''} to play</div><div id="course-list">`;
-      list.forEach(c=>{
-        html+=`<div class="course-card" onclick="openEdit('${c.id}')">
-          <div class="course-top">
-            <div><div class="course-name">${c.name}</div><div class="course-location">${c.location||''}</div></div>
-            <div class="bucket-tag"><i class="ti ti-flag" style="font-size:11px;vertical-align:-1px" aria-hidden="true"></i> Want to play</div>
-          </div>
-          ${c.notes?`<div class="course-notes" style="margin-top:8px">${c.notes}</div>`:''}
-        </div>`;
-      });
+      html+=`<div class="search-wrap"><i class="ti ti-search search-icon"></i><input class="search-input" placeholder="Search bucket list…" oninput="renderFiltered()" /></div><div class="section-head">${list.length} course${list.length!==1?'s':''} to play</div><div id="course-list">`;
+      list.forEach(c=>{html+=`<div class="course-card" onclick="openEdit('${c.id}')"><div class="course-top"><div><div class="course-name">${c.name}</div><div class="course-location">${c.location||''}</div></div><div class="bucket-tag">Want to play</div></div>${c.notes?`<div class="course-notes" style="margin-top:8px">${c.notes}</div>`:''}</div>`;});
       html+=`</div>`;
     } else {
-      html=`<div class="empty-state"><div class="empty-icon"><i class="ti ti-map-pin" aria-hidden="true"></i></div><div class="empty-text">Your bucket list is empty.<br>Start adding dream courses.</div></div>`;
+      html=`<div class="empty-state"><div class="empty-icon"><i class="ti ti-map-pin"></i></div><div class="empty-text">Your bucket list is empty.<br>Start adding dream courses.</div></div>`;
     }
     el.innerHTML=html;
   }
 }
 
-function renderFiltered(){
-  const q=(document.querySelector('.search-input')?.value||'').toLowerCase();
-  document.querySelectorAll('#course-list .course-card').forEach(card=>{
-    card.style.display=card.innerText.toLowerCase().includes(q)?'':'none';
-  });
-}
+function renderFiltered(){const q=(document.querySelector('.search-input')?.value||'').toLowerCase();document.querySelectorAll('#course-list .course-card').forEach(card=>{card.style.display=card.innerText.toLowerCase().includes(q)?'':'none';});}
 
-const nameInput = document.getElementById('f-name');
-const sugBox = document.getElementById('suggestions');
-
-nameInput.addEventListener('input', function(){
-  const val = this.value.trim();
-  clearTimeout(searchTimer);
-  if(val.length < 2){ sugBox.style.display='none'; return; }
-  searchTimer = setTimeout(()=>fetchSuggestions(val), 420);
-});
+const nameInput=document.getElementById('f-name');
+const sugBox=document.getElementById('suggestions');
+nameInput.addEventListener('input',function(){const val=this.value.trim();clearTimeout(searchTimer);if(val.length<2){sugBox.style.display='none';return;}searchTimer=setTimeout(()=>fetchSuggestions(val),420);});
 
 async function fetchSuggestions(query){
   sugBox.style.display='block';
   sugBox.innerHTML=`<div class="suggestion-status"><span class="spinner"></span>Finding courses…</div>`;
   try{
-    const res = await fetch('/api/suggest', {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ query })
-    });
-    const data = await res.json();
-    suggestionResults = data.results || [];
-    if(!suggestionResults.length){
-      sugBox.innerHTML=`<div class="suggestion-status">No matches — type it in manually.</div>`;
-      return;
-    }
-    sugBox.innerHTML = suggestionResults.map((r,i)=>`
-      <div class="suggestion-item" onmousedown="selectCourse(${i})" ontouchstart="selectCourse(${i})">
-        <div class="suggestion-name">${r.name}</div>
-        <div class="suggestion-loc">${r.city}, ${r.state}</div>
-      </div>`).join('');
-  } catch(err){
-    sugBox.innerHTML=`<div class="suggestion-status">Couldn't load suggestions — type it manually.</div>`;
-  }
+    const res=await fetch('/api/suggest',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({query})});
+    const data=await res.json();
+    suggestionResults=data.results||[];
+    if(!suggestionResults.length){sugBox.innerHTML=`<div class="suggestion-status">No matches — type it in manually.</div>`;return;}
+    sugBox.innerHTML=suggestionResults.map((r,i)=>`<div class="suggestion-item" onmousedown="selectCourse(${i})" ontouchstart="selectCourse(${i})"><div class="suggestion-name">${r.name}</div><div class="suggestion-loc">${r.city}, ${r.state}</div></div>`).join('');
+  }catch(err){sugBox.innerHTML=`<div class="suggestion-status">Couldn't load suggestions — type it manually.</div>`;}
 }
 
-function selectCourse(idx){
-  const r = suggestionResults[idx];
-  if(!r) return;
-  nameInput.value = r.name;
-  document.getElementById('f-location').value = `${r.city}, ${r.state}`;
-  sugBox.style.display='none';
+function selectCourse(idx){const r=suggestionResults[idx];if(!r)return;nameInput.value=r.name;document.getElementById('f-location').value=`${r.city}, ${r.state}`;sugBox.style.display='none';}
+document.addEventListener('click',e=>{if(!e.target.closest('#suggestions')&&e.target!==nameInput)sugBox.style.display='none';});
+function showStep(id){document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
+
+function step1Next(){
+  const name=nameInput.value.trim();if(!name)return;
+  if(currentType==='bucket'){
+    const course={id:editingId||Date.now().toString(),name,location:document.getElementById('f-location').value.trim(),type:'bucket',score:0,date:'',notes:document.getElementById('f-notes').value.trim()};
+    saveOrUpdate(course);closeModal();currentTab='bucket';
+    document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',i===1));render();return;
+  }
+  if(editingId){
+    const c=courses.find(x=>x.id===editingId);
+    document.getElementById('e-name').value=c.name;document.getElementById('e-location').value=c.location||'';
+    document.getElementById('e-date').value=c.date||'';document.getElementById('e-notes').value=c.notes||'';
+    showStep('step-edit');return;
+  }
+  newCourse={id:Date.now().toString(),name,location:document.getElementById('f-location').value.trim(),type:'played',score:0,date:document.getElementById('f-date').value,notes:document.getElementById('f-notes').value.trim()};
+  document.getElementById('feeling-sub').textContent=newCourse.name;
+  showStep('step-2');
 }
 
-document.addEventListener('click', e=>{
-  if(!e.target.closest('#suggestions') && e.target !== nameInput){
-    sugBox.style.display='none';
-  }
-});
+function setFeeling(feeling){
+  if(feeling==='liked')feelingRange=[8,10];
+  else if(feeling==='okay')feelingRange=[5,7];
+  else feelingRange=[1,4];
+  const played=courses.filter(c=>c.type==='played');
+  if(played.length<2){newCourse.score=Math.round((feelingRange[0]+feelingRange[1])/2);finalizeCourse();return;}
+  const sorted=[...played].sort((a,b)=>b.score-a.score);
+  const inRange=sorted.filter(c=>c.score>=feelingRange[0]&&c.score<=feelingRange[1]);
+  const above=sorted.filter(c=>c.score>feelingRange[1]);
+  const below=sorted.filter(c=>c.score<feelingRange[0]);
+  h2hQueue=[];
+  if(above.length)h2hQueue.push(above[above.length-1]);
+  if(inRange.length)h2hQueue.push(inRange[Math.floor(inRange.length/2)]);
+  if(below.length)h2hQueue.push(below[0]);
+  if(h2hQueue.length===0)h2hQueue=sorted.slice(0,Math.min(3,sorted.length));
+  h2hQueue=h2hQueue.slice(0,maxComparisons);
+  h2hIndex=0;h2hResults=[];
+  showStep('step-3');showH2H();
+}
 
-function openModal(reset=true){
-  if(reset){
-    editingId=null;currentRating=0;currentType=currentTab==='played'?'played':'bucket';
-    nameInput.value='';
-    document.getElementById('f-location').value='';
-    document.getElementById('f-notes').value='';
-    document.getElementById('f-date').value='';
-    sugBox.style.display='none';
-    document.getElementById('modal-title').textContent='Add a course';
-    document.getElementById('save-btn').textContent='Save course';
-    document.getElementById('delete-btn').style.display='none';
-    setType(currentType);updateStars();
-  }
-  document.getElementById('modal').classList.add('open');
+function showH2H(){
+  const total=h2hQueue.length;
+  let dots='';for(let i=0;i<total;i++)dots+=`<div class="dot${i<h2hIndex?' done':i===h2hIndex?' active':''}"></div>`;
+  document.getElementById('progress-dots').innerHTML=dots;
+  if(h2hIndex>=total){computeFinalScore();return;}
+  const opponent=h2hQueue[h2hIndex];
+  document.getElementById('h2h-prompt').textContent='Which course did you enjoy more?';
+  document.getElementById('h2h-btns').innerHTML=`<button class="h2h-btn" onclick="h2hPick('new')"><div class="h2h-course">${newCourse.name}</div><div class="h2h-loc">${newCourse.location||'New course'}</div></button><div class="h2h-divider">VS</div><button class="h2h-btn" onclick="h2hPick('existing')"><div class="h2h-course">${opponent.name}</div><div class="h2h-loc">${opponent.location||''}</div><div class="h2h-score">${opponent.score}/10</div></button>`;
+}
+
+function h2hPick(pick){const opponent=h2hQueue[h2hIndex];h2hResults.push({opponent,pickedNew:pick==='new'});h2hIndex++;showH2H();}
+
+function computeFinalScore(){
+  let lo=feelingRange[0],hi=feelingRange[1];
+  h2hResults.forEach(r=>{
+    if(r.pickedNew&&r.opponent.score>=lo)lo=Math.min(hi,r.opponent.score+0.1);
+    if(!r.pickedNew&&r.opponent.score<=hi)hi=Math.max(lo,r.opponent.score-0.1);
+  });
+  const wins=h2hResults.filter(r=>r.pickedNew).length;
+  const ratio=h2hResults.length>0?wins/h2hResults.length:0.5;
+  newCourse.score=Math.round(Math.min(10,Math.max(1,lo+ratio*(hi-lo)))*10)/10;
+  finalizeCourse();
+}
+
+function finalizeCourse(){courses.push(newCourse);save();closeModal();currentTab='played';document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',i===0));render();}
+function saveOrUpdate(course){if(editingId){const idx=courses.findIndex(c=>c.id===editingId);if(idx>-1)courses[idx]=course;}else courses.push(course);save();}
+
+function openModal(){
+  editingId=null;currentType='played';
+  nameInput.value='';document.getElementById('f-location').value='';document.getElementById('f-notes').value='';document.getElementById('f-date').value='';
+  sugBox.style.display='none';document.getElementById('delete-btn').style.display='none';
+  setType('played');showStep('step-1');document.getElementById('modal').classList.add('open');
 }
 
 function openEdit(id){
   const c=courses.find(x=>x.id===id);if(!c)return;
-  editingId=id;currentRating=c.rating||0;currentType=c.type;
-  nameInput.value=c.name;
-  document.getElementById('f-location').value=c.location||'';
-  document.getElementById('f-notes').value=c.notes||'';
-  document.getElementById('f-date').value=c.date||'';
-  sugBox.style.display='none';
-  document.getElementById('modal-title').textContent='Edit course';
-  document.getElementById('save-btn').textContent='Update course';
+  editingId=id;currentType=c.type;
+  document.getElementById('e-name').value=c.name;document.getElementById('e-location').value=c.location||'';
+  document.getElementById('e-date').value=c.date||'';document.getElementById('e-notes').value=c.notes||'';
   document.getElementById('delete-btn').style.display='block';
-  setType(c.type);updateStars();
-  openModal(false);
+  showStep('step-edit');document.getElementById('modal').classList.add('open');
+}
+
+function saveEdit(){
+  if(!editingId)return;
+  const idx=courses.findIndex(c=>c.id===editingId);
+  if(idx>-1){courses[idx].name=document.getElementById('e-name').value.trim();courses[idx].location=document.getElementById('e-location').value.trim();courses[idx].date=document.getElementById('e-date').value;courses[idx].notes=document.getElementById('e-notes').value.trim();}
+  save();closeModal();render();
 }
 
 function closeModal(){document.getElementById('modal').classList.remove('open');}
 document.getElementById('modal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal();});
+function setType(t){currentType=t;document.getElementById('btn-played').classList.toggle('active',t==='played');document.getElementById('btn-bucket').classList.toggle('active',t==='bucket');document.getElementById('played-extra').style.display=t==='played'?'':'none';}
+function deleteCourse(){if(!editingId)return;courses=courses.filter(c=>c.id!==editingId);save();closeModal();render();}
 
-function setType(t){
-  currentType=t;
-  document.getElementById('btn-played').classList.toggle('active',t==='played');
-  document.getElementById('btn-bucket').classList.toggle('active',t==='bucket');
-  document.getElementById('played-fields').style.display=t==='played'?'':'none';
-}
-
-function setRating(n){currentRating=n;updateStars();}
-function updateStars(){
-  document.querySelectorAll('.star-pick').forEach((s,i)=>s.classList.toggle('on',i<currentRating));
-}
-
-function saveCourse(){
-  const name=nameInput.value.trim();
-  if(!name)return;
-  const course={
-    id:editingId||Date.now().toString(),
-    name,
-    location:document.getElementById('f-location').value.trim(),
-    type:currentType,
-    rating:currentType==='played'?currentRating:0,
-    date:document.getElementById('f-date').value,
-    notes:document.getElementById('f-notes').value.trim(),
-  };
-  if(editingId){const idx=courses.findIndex(c=>c.id===editingId);if(idx>-1)courses[idx]=course;}
-  else courses.push(course);
-  save();closeModal();
-  currentTab=currentType;
-  document.querySelectorAll('.tab').forEach((t,i)=>{
-    t.classList.toggle('active',(i===0&&currentTab==='played')||(i===1&&currentTab==='bucket'));
-  });
-  render();
-}
-
-function deleteCourse(){
-  if(!editingId)return;
-  courses=courses.filter(c=>c.id!==editingId);
-  save();closeModal();render();
-}
-
-if('serviceWorker' in navigator){
-  navigator.serviceWorker.register('/sw.js');
-}
-
+if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js');}
 render();
 </script>
 </body>
